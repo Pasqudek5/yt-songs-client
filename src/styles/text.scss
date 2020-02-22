@@ -1,0 +1,6 @@
+@import './variabels.scss';
+
+.text {
+  &--white { color: $color-white; }
+  &--accent { color: $color-accent; }
+}

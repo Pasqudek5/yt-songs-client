@@ -1,0 +1,30 @@
+@import '../../styles/variabels.scss';
+
+.button {
+  outline: 0;
+  border: 0;
+  border-radius: $base-radius;
+  min-width: 5.7rem;
+  min-height: 5.7rem;
+  transition: box-shadow 0.1s linear;
+  transition: transform 0.05s linear;
+  will-change: box-shadow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-white;
+  font-size: 1.8rem;
+
+  
+  &:hover {
+    cursor: pointer;
+    box-shadow: $base-shadow;
+  }
+
+  &:active { transform: scale(0.95); }
+
+  &--primary { background: $color-primary; }
+  &--secondary { background: $color-secondary; }
+  &--tertiary { background: $color-tertiary; }
+  &--accent { background: $color-accent-gradient; }
+}

@@ -1,0 +1,48 @@
+@import '../../styles/variabels.scss';
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 5.7rem;
+  max-height: 5.7rem;
+  color: $color-white;
+  position: relative;
+
+  list-style-type: none;
+  margin: 0;
+  background-color: $color-tertiary;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: $base-radius;
+  // pointer-events: none;
+  // transition: box-shadow 0.1s linear;
+  // transition: opacity 0.1s linear;
+  // transition: opacity 0.1s linear;
+  // will-change: box-shadow, opacity;
+  // opacity: 0;
+  // overflow: hidden;
+  
+  &--open {
+    pointer-events: all;
+    opacity: 1;
+    box-shadow: $base-shadow;
+  }
+
+  &__item {
+    width: 100%;
+    height: 5.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.1s linear;
+    will-change: background-color;
+
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
+}

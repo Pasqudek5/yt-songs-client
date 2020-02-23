@@ -12,6 +12,7 @@ import Select from '../components/select'
 import Icon from '../components/icon'
 import Flex from '../components/flex'
 import DownloadCard from '../components/download-card'
+import Blobs from '../components/blobs'
 
 import Download from '../assets/icons/download.svg';
 

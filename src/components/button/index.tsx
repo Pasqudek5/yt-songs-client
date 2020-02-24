@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement, MouseEvent, ReactNode, ReactNodeArray } from 'react'
+import React, { FC, ReactElement, MouseEvent, ReactNode } from 'react'
 import classnames from 'classnames';
 import './styles.scss';
 
@@ -7,10 +7,10 @@ type ButtonProps = {
   type?: 'button' | 'submit',
   className?: string,
   onClick: (event: MouseEvent<HTMLButtonElement>) => void,
-  children: ReactNode | ReactNodeArray
+  children: ReactNode
 }
 
-const Button: FunctionComponent<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   color = false,
   type = 'button',
   className = '',

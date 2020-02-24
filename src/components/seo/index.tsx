@@ -14,7 +14,7 @@ const SEO: FunctionComponent<SEOProps> = ({
   description = '',
   lang = 'en',
   meta = [],
-  title,
+  title = '',
 }): ReactElement => {
   const { site } = useStaticQuery(
     graphql`

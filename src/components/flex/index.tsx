@@ -2,7 +2,6 @@ import React, {
   FunctionComponent,
   ReactElement,
   ReactNode,
-  ReactNodeArray,
 } from 'react'
 import classnames from 'classnames';
 import './styles.scss';
@@ -10,22 +9,26 @@ import './styles.scss';
 type FlexProps = {
   row?: boolean,
   col?: boolean,
-  classNames?: string,
-  children: ReactNode | ReactNodeArray
+  center: boolean,
+  className?: string,
+  children: ReactNode
 }
 
 const Flex: FunctionComponent<FlexProps> = ({
   row,
   col,
-  classNames = '',
+  center,
+  className = '',
   children,
+  ...props
 }): ReactElement => {
-  const classes = classnames('flex', classNames, {
+  const classes = classnames('flex', className, {
     'flex--row': row,
     'flex--col': col,
+    'flex--center': center
   });
   
-  return <div className={classes}>{children}</div>
+  return <div {...props} className={classes}>{children}</div>
 }
 
 export default Flex;

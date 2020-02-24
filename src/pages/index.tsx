@@ -1,39 +1,32 @@
-import React, { useState, ReactElement } from 'react'
+import React, { FC, ReactElement } from 'react'
 import '../styles/global.scss';
+
+import IndexPageContainer from '../containers/index-page';
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Header from '../components/Header'
-
 import Form from '../components/form';
 import Input from '../components/input';
 import Button from '../components/button';
 import Select from '../components/select'
 import Icon from '../components/icon'
 import Flex from '../components/flex'
-import DownloadCard from '../components/download-card'
-import Blobs from '../components/blobs'
+import Modal from '../components/modal'
 
 import Download from '../assets/icons/download.svg';
 
-import { isUrlValid } from '../utils';
+const IndexPage: FC = (): ReactElement => {
 
-import API from '../services/api';
-
-const options = ['mp3', 'mp4']
-
-const IndexPage = (): ReactElement => {
-  const [formData, setFormData] = useState({});
-  const [videoUrl, setVideoUrl] = useState('');
-  const [extention, setExtention] = useState(options[0]);
-  const [linkToDownload, setLinkToDownload] = useState('')
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const iconRight = () => (
+  const iconRight = ({
+    extentions,
+    setExtention,
+    extention
+  }) => (
     <Flex row>
       <Select
         name="extention"
-        options={options}
+        options={extentions}
         onChange={setExtention}
         value={extention}
       />
@@ -51,27 +44,50 @@ const IndexPage = (): ReactElement => {
     <>
       <SEO title="YT Songs" />
       <Header />
-      <Layout>
-        <Form onSubmit={() => {}}>
-          <div className="p-l-3 m-b-4">
-            <p>Convert YouTube video easily.</p>
-            <p className="small">
-              it's <u className="text--white">free</u> and it will be!
-            </p>
-          </div>
-          <Input
-            placeholder="Link..."
-            name="url"
-            value={videoUrl}
-            onChange={setVideoUrl}
-            error={errorMessage}
-            iconRight={iconRight()}
-          />
-        </Form>
-        {videoUrl && linkToDownload && 
-          <DownloadCard videoUrl={videoUrl} linkToDownload={linkToDownload} />
-        }
-      </Layout>
+      <IndexPageContainer>
+        {({
+          videoUrl,
+          setVideoUrl,
+          extention,
+          extentions,
+          setExtention,
+          errorMessage,
+          isModalOpen,
+          setIsModalOpen,
+          linkToDownload,
+          handleSubmit
+        }) => (
+            <Layout>
+              <Form onSubmit={handleSubmit}>
+                <div className="p-l-3 m-b-4">
+                  <p>Convert YouTube video easily.</p>
+                  <p className="small">
+                    it's <u className="text--white">free</u> and it will be!
+                  </p>
+                </div>
+                <Input
+                  placeholder="Link..."
+                  name="url"
+                  value={videoUrl}
+                  onChange={setVideoUrl}
+                  error={errorMessage}
+                  iconRight={iconRight({
+                    extentions,
+                    setExtention,
+                    extention
+                  })}
+                />
+              </Form>
+              {isModalOpen && videoUrl && linkToDownload &&
+                <Modal
+                  videoUrl={videoUrl}
+                  linkToDownload={linkToDownload}
+                  onClick={() => setIsModalOpen(false)}
+                />
+              }
+            </Layout>
+          )}
+      </IndexPageContainer>
     </>
   );
 }
